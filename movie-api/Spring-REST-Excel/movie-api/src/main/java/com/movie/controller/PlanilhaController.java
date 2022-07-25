@@ -45,13 +45,13 @@ public class PlanilhaController {
 					.titulo(cells.get(1).getStringCellValue())
 					.estudio(cells.get(2).getStringCellValue())
 					.produtores(cells.get(3).getStringCellValue())
-					.vencedor(cells.get(4) == null ? "" : cells.get(4).getStringCellValue())
+					.vencedor(cells.size() < 5 ? "" : cells.get(4).getStringCellValue())
 					.build();
-
+			
 			movies.add(movie);
 			
 		});
-		
+
 		return movies;
 	}
 
