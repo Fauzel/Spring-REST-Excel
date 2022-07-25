@@ -1,7 +1,9 @@
 package com.movie.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +20,12 @@ public class MovieController {
 	private MovieRepository movieRepository;
 
 	@GetMapping
-	public List<Movie> listMovies() {
+	public List<Movie> listMovies() throws InvalidFormatException, IOException {
+		
 		return movieRepository.findAll();
 	}
 	
 	public void saveAllMovies(List<Movie> movies) {
-		movies.forEach(movie ->{
-			
-			movieRepository.save(movie);
-			System.out.println(movie.getTitulo());
-		});
+		movieRepository.saveAll(movies);
 	}
 }

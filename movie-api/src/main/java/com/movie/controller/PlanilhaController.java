@@ -34,23 +34,29 @@ public class PlanilhaController {
 		List<Row> rows = (List<Row>) toList(sheet.iterator());
 		
 		rows.remove(0);
-		
-		rows.forEach(row -> {
+				
+		for(Row row : rows) {
 			
-			@SuppressWarnings("unchecked")
 			List<Cell> cells = (List<Cell>) toList(row.cellIterator());
+			Movie movie = new Movie();
 			
-			Movie movie = Movie.builder()
-					.ano((int) cells.get(0).getNumericCellValue())
-					.titulo(cells.get(1).getStringCellValue())
-					.estudio(cells.get(2).getStringCellValue())
-					.produtores(cells.get(3).getStringCellValue())
-					.vencedor(cells.get(4) == null ? "" : cells.get(4).getStringCellValue())
-					.build();
-
+			for(Cell cell : cells) {
+				
+				
+				movie.setAno((int) cells.get(0).getNumericCellValue());
+				movie.setTitulo(cells.get(1).getStringCellValue());
+				movie.setEstudio(cells.get(2).getStringCellValue());
+				movie.setProdutores(cells.get(3).getStringCellValue());
+				
+				if(cells.size() != 5) {
+					movie.setVencedor(Boolean.FALSE);
+				} else {
+					movie.setVencedor(cells.get(4).getStringCellValue().toLowerCase().equals("yes") ? Boolean.TRUE : Boolean.FALSE);
+				}
+			}
+			
 			movies.add(movie);
-			
-		});
+		}
 		
 		return movies;
 	}
