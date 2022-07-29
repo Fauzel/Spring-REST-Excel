@@ -21,20 +21,6 @@ public class MovieApiApplication {
 	
 	public static void main(String[] args) throws IOException, InvalidFormatException {
 		SpringApplication.run(MovieApiApplication.class, args);
-		
-//		System.out.println("Step 1");
-//		PlanilhaController planilhaController = new PlanilhaController();
-//		System.out.println("Step 2");
-//		@Autowired
-//		MovieRepository movieRepository;
-//		System.out.println("Step 3");
-//		
-//		movieRepository.saveAll(planilhaController.movieList());
-//				
-//		planilhaController.imprimir(planilhaController.movieList());
-//		
-//		System.out.println("Step 4");
-		
 	}
 	
 	@Bean

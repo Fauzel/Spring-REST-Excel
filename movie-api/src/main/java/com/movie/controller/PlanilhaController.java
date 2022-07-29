@@ -3,6 +3,7 @@ package com.movie.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,8 +41,7 @@ public class PlanilhaController {
 			List<Cell> cells = (List<Cell>) toList(row.cellIterator());
 			Movie movie = new Movie();
 			
-			for(Cell cell : cells) {
-				
+			for(Cell cell : cells) {				
 				
 				movie.setAno((int) cells.get(0).getNumericCellValue());
 				movie.setTitulo(cells.get(1).getStringCellValue());
