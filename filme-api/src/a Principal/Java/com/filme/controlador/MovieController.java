@@ -70,7 +70,6 @@ public class MovieController {
 		return movies;
 	}
 	
-	@GetMapping(path="/premiados")
 	private List<Movie> filmesPremiados() {
 
 		List<Movie> lista1 = movieRepository.findByVencedor(Boolean.TRUE);
