@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Movie {
 
 	@Id
@@ -28,8 +30,19 @@ public class Movie {
 	private List<String> produtoresList;
 	
 	@Transient
-	private Integer tempoEntrePremiacao;
+	private Integer intervalo;
 	
 	@Transient
 	private String produtorPremiado;
+	
+	@Transient
+	private Integer anoProximoFilme;
+	
+	public Movie(Integer ano, String titulo, String estudio, String produtores, Boolean vencedor) {
+		this.setAno(ano);
+		this.setTitulo(titulo);
+		this.setEstudio(estudio);
+		this.setProdutores(produtores);
+		this.setVencedor(vencedor);
+	}
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.movie.comparator.ComparatorOrderByTempoPremiacao;
 import com.movie.model.Movie;
 import com.movie.repository.MovieRepository;
+import com.movie.representation.IntervaloRep;
 import com.movie.representation.ProdutorRep;
 
 @Service
@@ -31,22 +32,20 @@ public class MovieService {
 		return movieRepository.findAll();
 	}
 
-	public ProdutorRep produtorMaiorIntervalo() {
+	public IntervaloRep intervaloDePremios() {
 		List<Movie> movies = filmesPremiados();
+		List<ProdutorRep> produtoresMin = new ArrayList<ProdutorRep>();
+		List<ProdutorRep> produtoresMax = new ArrayList<ProdutorRep>();
+		
 		Collections.sort(movies, new ComparatorOrderByTempoPremiacao());
-		Movie movie = movies.get(movies.size() - 1);
-		ProdutorRep produtor = new ProdutorRep(movie.getProdutorPremiado(), movie.getTempoEntrePremiacao());
 
-		return produtor;
-	}
+		Movie movieMin = movies.get(0);
+		Movie movieMax = movies.get(movies.size() - 1);
+				
+		produtoresMin.addAll(listarProdutoresPorIntervalo(movies, movies.get(0).getIntervalo()));
+		produtoresMax.addAll(listarProdutoresPorIntervalo(movies, movies.get(movies.size() - 1).getIntervalo()));
 
-	public ProdutorRep produtorMenorIntervalo() {
-		List<Movie> movies = filmesPremiados();
-		Collections.sort(movies, new ComparatorOrderByTempoPremiacao());
-		Movie movie = movies.get(0);
-		ProdutorRep produtor = new ProdutorRep(movie.getProdutorPremiado(), movie.getTempoEntrePremiacao());
-
-		return produtor;
+		return new IntervaloRep(produtoresMin, produtoresMax);
 	}
 
 	private List<Movie> filmesPremiados() {
@@ -63,8 +62,9 @@ public class MovieService {
 				for (Movie movie2 : lista2) {
 					if (movie2.getProdutoresList().contains(produtor) && movie1.getID() != movie2.getID()
 							&& !premiados.contains(movie2)) {
-						movie1.setTempoEntrePremiacao(movie2.getAno() - movie1.getAno());
+						movie1.setIntervalo(movie2.getAno() - movie1.getAno());
 						movie1.setProdutorPremiado(produtor);
+						movie1.setAnoProximoFilme(movie2.getAno());
 						premiados.add(movie1);
 					}
 				}
@@ -85,4 +85,16 @@ public class MovieService {
 		return movies;
 	}
 
+	private List<ProdutorRep> listarProdutoresPorIntervalo(List<Movie> filmes, Integer Intervalo) {
+		List<ProdutorRep> produtoresPorIntervalo = new ArrayList<ProdutorRep>();
+		
+		filmes.forEach(filme -> {
+			
+			if (filme.getIntervalo().equals(Intervalo)) {
+				produtoresPorIntervalo.add(new ProdutorRep(filme));
+			}
+		});
+		
+		return produtoresPorIntervalo;
+	}
 }

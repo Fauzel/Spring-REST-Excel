@@ -27,7 +27,7 @@ public class MovieApiApplication {
 			MovieService movieService = ctx.getBean("movieService", MovieService.class);
 			PlanilhaService planilhaService = new PlanilhaService();
 			
-			movieService.saveAllMovies(planilhaService.movieList());
+			movieService.saveAllMovies(planilhaService.movieListCSV());
 		};
 	}
 
