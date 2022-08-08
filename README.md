@@ -1,5 +1,5 @@
 # MOVIE APP
-https://img.shields.io/badge/version-1.0.0-green <br/>
+
 Tabela de conteúdos
 =================
 <!--ts-->
@@ -56,7 +56,7 @@ rodando na porta 8080 (porta na qual a aplicação está configurada).
   ```
 Executar a seguinte instrução no prompt de comando do Windows informando o PID identificado para a porta 8080 do procedimento anterior.
   ```bash
-  Taskkill /F /IM [PID]
+  Taskkill /F /IM <PID>
   ```
 
 Tecnologias
@@ -70,4 +70,7 @@ Tecnologias
 
 Autor
 =====
+<img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/31492540?v=4" width="80px;" alt=""/>
 Ricardo Lima Fauzel
+
+[![Github Badge](https://img.shields.io/badge/-Fauzel-grey?style=flat&labelColor=black&logo=github&logoColor=white&link=https://github.com/Fauzel)](https://github.com/Fauzel) [![Instagram Badge](https://img.shields.io/badge/-@Ricardo.Fauzel-grey?style=flat&labelColor=black&logo=instagram&logoColor=white&link=https://www.instagram.com/ricardo.fauzel/)](https://www.instagram.com/ricardo.fauzel/) [![Gmail Badge](https://img.shields.io/badge/-ricardofauzel@gmail.com-red?style=flat&labelColor=red&logo=gmail&logoColor=white&link=mailto:ricardofauzel@gmail.com)](mailto:ricardofauzel@gmail.com)
